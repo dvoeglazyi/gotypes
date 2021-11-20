@@ -3,7 +3,7 @@
 Some simple types based on builtin Golang types
 that implement interfaces for working with DB (Scan / Value) and JSON (Marshal / Unmarshal).
 
-##### NullUint
+#### NullUint
 Simplified sql.NullInt64 (but unsigned): not struct, based on builtin uint type.
 ```
 ni := sql.NullInt64{Int64: 32, Valid: true}
@@ -19,7 +19,7 @@ ni := sql.NullInt64{Int64: 32, Valid: false}
 nu := gotypes.NullUint(0)
 ```
 
-##### NullString
+#### NullString
 Simplified sql.NullString: not struct, based on builtin string type.
 ```
 ni := sql.NullString{String: "example", Valid: true}
@@ -35,7 +35,7 @@ ni := sql.NullInt64{String: "example", Valid: false}
 nu := gotypes.NullString("")
 ```
 
-##### Base64
+#### Base64
 Type for simply decoding / encoding Base64 in JSON-structs.
 ```
 type Something struct {
