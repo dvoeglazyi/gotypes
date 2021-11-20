@@ -42,7 +42,7 @@ type Something struct {
     Base gotypes.Base64 `json:"base"`
 }
 
-something := Something{Base:gotypes.Base64("decode me please")}
+something := Something{Base: gotypes.Base64("decode me please")}
 
 jsonString, err := json.Marshal(something)
 if err != nil {
