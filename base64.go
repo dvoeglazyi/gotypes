@@ -51,9 +51,7 @@ func (b Base64) Value() (driver.Value, error) {
 	if len(b) == 0 {
 		return nil, nil
 	}
-	result := make([]byte, base64.StdEncoding.EncodedLen(len(b)))
-	base64.StdEncoding.Encode(result, b)
-	return result, nil
+	return base64.StdEncoding.EncodeToString(b), nil
 }
 
 func (b *Base64) Scan(src interface{}) error {
@@ -68,11 +66,10 @@ func (b *Base64) Scan(src interface{}) error {
 		*b = nil
 		return nil
 	}
-	result := make([]byte, base64.StdEncoding.DecodedLen(len([]byte(value.String))))
-	length, err := base64.StdEncoding.Decode(result, result)
+	result, err := base64.StdEncoding.DecodeString(value.String)
 	if err != nil {
 		return err
 	}
-	*b = result[:length]
+	*b = result
 	return nil
 }
