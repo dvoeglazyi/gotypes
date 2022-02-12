@@ -34,31 +34,3 @@ ni := sql.NullInt64{String: "example", Valid: false}
 // Corresponds to
 nu := gotypes.NullString("")
 ```
-
-#### Base64
-Type for simply decoding / encoding Base64 in JSON-structs.
-```
-type Something struct {
-    Base gotypes.Base64 `json:"base"`
-}
-
-something := Something{Base: gotypes.Base64("decode me please")}
-
-jsonString, err := json.Marshal(something)
-if err != nil {
-    return err
-}
-// Base is Base64 encoded string.
-fmt.Println(string(jsonString))
-// Output:
-// {"base":"ZGVjb2RlIG1lIHBsZWFzZQ=="}
-
-var anything Something
-if err := json.Unmarshal(jsonString, &anything); err != nil {
-    panic(err)
-}
-// Base has value decoded from Base64 string.
-fmt.Println(string(anything.Base))
-// Output:
-// decode me please
-```
